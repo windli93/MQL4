@@ -24,8 +24,8 @@ void OnTick(void)
 //---
 // initial data checks
 // it is important to make sure that the expert works with a normal
-// chart and the user did not make any mistakes setting external 
-// variables (Lots, StopLoss, TakeProfit, 
+// chart and the user did not make any mistakes setting external
+// variables (Lots, StopLoss, TakeProfit,
 // TrailingStop) in our case, we check TakeProfit
 // on a chart of less than 100 bars
 //---
@@ -57,7 +57,7 @@ void OnTick(void)
          return;
         }
       //--- check for long position (BUY) possibility
-      if(MacdCurrent<0 && MacdCurrent>SignalCurrent && MacdPrevious<SignalPrevious && 
+      if(MacdCurrent<0 && MacdCurrent>SignalCurrent && MacdPrevious<SignalPrevious &&
          MathAbs(MacdCurrent)>(MACDOpenLevel*Point) && MaCurrent>MaPrevious)
         {
          ticket=OrderSend(Symbol(),OP_BUY,Lots,Ask,3,0,Ask+TakeProfit*Point,"macd sample",16384,0,Green);
@@ -71,7 +71,7 @@ void OnTick(void)
          return;
         }
       //--- check for short position (SELL) possibility
-      if(MacdCurrent>0 && MacdCurrent<SignalCurrent && MacdPrevious>SignalPrevious && 
+      if(MacdCurrent>0 && MacdCurrent<SignalCurrent && MacdPrevious>SignalPrevious &&
          MacdCurrent>(MACDOpenLevel*Point) && MaCurrent<MaPrevious)
         {
          ticket=OrderSend(Symbol(),OP_SELL,Lots,Bid,3,0,Bid-TakeProfit*Point,"macd sample",16384,0,Red);
@@ -86,19 +86,19 @@ void OnTick(void)
       //--- exit from the "no opened orders" block
       return;
      }
-//--- it is important to enter the market correctly, but it is more important to exit it correctly...   
-   for(cnt=0;cnt<total;cnt++)
+//--- it is important to enter the market correctly, but it is more important to exit it correctly...
+   for(cnt=0; cnt<total; cnt++)
      {
       if(!OrderSelect(cnt,SELECT_BY_POS,MODE_TRADES))
          continue;
-      if(OrderType()<=OP_SELL &&   // check for opened position 
+      if(OrderType()<=OP_SELL &&   // check for opened position
          OrderSymbol()==Symbol())  // check for symbol
         {
          //--- long position is opened
          if(OrderType()==OP_BUY)
            {
             //--- should it be closed?
-            if(MacdCurrent>0 && MacdCurrent<SignalCurrent && MacdPrevious>SignalPrevious && 
+            if(MacdCurrent>0 && MacdCurrent<SignalCurrent && MacdPrevious>SignalPrevious &&
                MacdCurrent>(MACDCloseLevel*Point))
               {
                //--- close order and exit
@@ -124,7 +124,7 @@ void OnTick(void)
          else // go to short position
            {
             //--- should it be closed?
-            if(MacdCurrent<0 && MacdCurrent>SignalCurrent && 
+            if(MacdCurrent<0 && MacdCurrent>SignalCurrent &&
                MacdPrevious<SignalPrevious && MathAbs(MacdCurrent)>(MACDCloseLevel*Point))
               {
                //--- close order and exit
