@@ -40,7 +40,7 @@
 
 
 
-#property copyright "Copyright © 2013, Momods"
+#property copyright "Copyright ?2013, Momods"
 #property link      "http://worldwide-invest.org/"
 
 #import  "Wininet.dll"

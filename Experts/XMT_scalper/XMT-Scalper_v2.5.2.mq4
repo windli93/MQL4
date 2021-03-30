@@ -260,7 +260,7 @@
 // directory as this EA, then the files below should be surropunded by < > instead.
 #include <stdlib.mqh>        // "stdlib.mqh" or "<sdlib.mqh> 
 #include <stderror.mqh>      // "stderror.mqh" or <stderror.mqh>
-
+#include <stdlib.mqh>
 //----------------------- External Globals ----------------------------------------------------------------
 // All globals should here have their name starting with a CAPITAL character
 
@@ -494,7 +494,7 @@ void OnDeinit( const int reason )
 	sub_printsumofbrokererrors();
 	
 	// Delete all objects on the screen
-   //sub_DeleteDisplay();	
+   sub_DeleteDisplay();	
 	
 	// Check through all closed orders
 	sub_CheckThroughAllClosedOrders();
